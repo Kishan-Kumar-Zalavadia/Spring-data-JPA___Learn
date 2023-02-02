@@ -18,11 +18,23 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     //Document:
     //https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods
 
+
+    //-------------------------------------------------------------------
     //JPQL
     //JPQL Query is based on "CLASS" not on based on tables of the DB
+
     @Query("select s from Student s where s.emailId = ?1")
-    Student getStudentByEmailAddress(String EmailId);
+    Student getStudentByEmailAddress(String emailId);
 
     @Query("select s.firstName from Student s where s.emailId = ?1")
-    String getStudentFirstNameByEmailAddress(String EmailId);
+    String getStudentFirstNameByEmailAddress(String emailId);
+
+    //-------------------------------------------------------------------
+    //Native query
+
+    @Query(
+            value = "SELECT * FROM table_student s WHERE s.email_address = ?1",
+            nativeQuery = true
+    )
+    Student getStudentByEmailAddressNative(String emailId);
 }

@@ -72,6 +72,7 @@ class StudentRepositoryTest {
         System.out.println("Student based on guardian name: "+ students);
     }
 
+    //Query test
     @Test
     public void printGetStudentByEmailAddress(){
         Student student = studentRepository.getStudentByEmailAddress("kkbist@gmail.com");
@@ -82,5 +83,12 @@ class StudentRepositoryTest {
     public void printGetStudentFirstNameByEmailAddress(){
         String studentFirstName = studentRepository.getStudentFirstNameByEmailAddress("kkbist@gmail.com");
         System.out.println("Student firstName by email address - query: "+studentFirstName);
+    }
+
+    //Native Query test
+    @Test
+    public void printGetStudentByEmailAddressNative(){
+        Student student = studentRepository.getStudentByEmailAddressNative("kkbist@gmail.com");
+        System.out.println("Student by email address - native query: "+student);
     }
 }
