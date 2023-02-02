@@ -1,5 +1,6 @@
 package com.theneopix.spring.data.jpa.learn.repository;
 
+import com.theneopix.spring.data.jpa.learn.entity.Guadian;
 import com.theneopix.spring.data.jpa.learn.entity.Student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,28 @@ class StudentRepositoryTest {
                 .emailId("kkbist@gmail.com")
                 .firstName("KK")
                 .lastName("Bist")
-                .guardianName("TheNeoPix")
-                .guardianEmail("theneopix@gmail.com")
-                .guardianMobile("1234567890")
+//                .guardianName("TheNeoPix")
+//                .guardianEmail("theneopix@gmail.com")
+//                .guardianMobile("1234567890")
+                .build();
+
+        studentRepository.save(student);
+    }
+
+    @Test
+    public void saveStudentWithGuardianDetails(){
+
+        Guadian guadian = Guadian.builder()
+                .name("TheNeoPix2")
+                .email("theneopix2@email.com")
+                .mobile("0321654987")
+                .build();
+
+        Student student = Student.builder()
+                .firstName("KK2")
+                .lastName("Bist2")
+                .emailId("kkbist2@gmail.com")
+                .guadian(guadian)
                 .build();
 
         studentRepository.save(student);
