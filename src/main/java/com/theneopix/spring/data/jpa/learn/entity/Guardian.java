@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
         )
 })
 @Builder
-public class Guadian {
+public class Guardian {
     private String name;
     private String email;
     private String mobile;

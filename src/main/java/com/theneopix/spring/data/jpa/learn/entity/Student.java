@@ -41,5 +41,5 @@ public class Student{
     private String emailId;
 
     @Embedded
-    private Guadian guadian;
+    private Guardian guardian;
 }
