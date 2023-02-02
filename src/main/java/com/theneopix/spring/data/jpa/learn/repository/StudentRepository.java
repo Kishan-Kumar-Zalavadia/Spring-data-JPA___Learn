@@ -2,9 +2,11 @@ package com.theneopix.spring.data.jpa.learn.repository;
 
 import com.theneopix.spring.data.jpa.learn.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,7 +40,7 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     )
     Student getStudentByEmailAddressNative(String emailId);
 
-    
+
     //-------------------------------------------------------------------
     //Native query named Param
     @Query(
@@ -46,4 +48,16 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true
     )
     Student getStudentByEmailAddressNativeNamedParam(@Param("emailId") String emailId);
+
+
+    //-------------------------------------------------------------------
+    //Update firstName based on emailId
+    @Modifying
+    @Transactional
+    @Query(
+            value = "update table_student set first_name = ?1 where email_address = ?2",
+            nativeQuery = true
+    )
+    int updateStudentNameByEmailId(String firstName, String emailId);
+
 }
