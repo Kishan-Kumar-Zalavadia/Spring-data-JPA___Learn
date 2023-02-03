@@ -1,16 +1,15 @@
 package com.theneopix.spring.data.jpa.learn.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = "course")
+//For FetchType=EAGER -> @ToString [Without exclude]
 public class CourseMaterial {
     @Id
     @SequenceGenerator(
@@ -25,8 +24,14 @@ public class CourseMaterial {
     private Long courseMaterialId;
     private String url;
 
+    //Fetch type- eager -> It will bring course data also.
+    //Fetch type - lazy -> It will bring course data until and unless you specify it.
+
+    //If FetchType = Lazy -> [CourseMaterial(courseMaterialId=1, url=www.google.com)]
+    //If FetchType = EAGER ->[CourseMaterial(courseMaterialId=1, url=www.google.com, course=Course(courseId=1, title=DSA, credit=6))]
     @OneToOne(
-            cascade = CascadeType.ALL
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
     )
     @JoinColumn(
             name = "course_id",
