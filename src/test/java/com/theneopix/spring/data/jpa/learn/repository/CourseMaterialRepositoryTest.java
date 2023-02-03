@@ -29,6 +29,5 @@ class CourseMaterialRepositoryTest {
 
         repository.save(courseMaterial);
 
-        //ERROR will come -> So we use cascading
     }
 }
