@@ -25,4 +25,10 @@ public class Course {
     private Long courseId;
     private String title;
     private Integer credit;
+
+    //Mapping CourseMaterial to Course
+    @OneToOne(
+            mappedBy = "course"
+    )
+    private CourseMaterial courseMaterial;
 }
