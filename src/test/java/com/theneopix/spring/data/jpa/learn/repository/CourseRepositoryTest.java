@@ -1,6 +1,7 @@
 package com.theneopix.spring.data.jpa.learn.repository;
 
 import com.theneopix.spring.data.jpa.learn.entity.Course;
+import com.theneopix.spring.data.jpa.learn.entity.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,5 +21,22 @@ class CourseRepositoryTest {
         List<Course> courses = courseRepository.findAll();
 
         System.out.println("Courses: "+courses);
+    }
+
+    @Test
+    public void saveCourseWithTeacher(){
+
+        Teacher teacher = Teacher.builder()
+                .firstName("Priyanka")
+                .lastName("Singh")
+                .build();
+
+        Course course = Course.builder()
+                .title("Python")
+                .credit(4)
+                .teacher(teacher)
+                .build();
+
+        courseRepository.save(course);
     }
 }
