@@ -31,7 +31,8 @@ public class CourseMaterial {
     //If FetchType = EAGER ->[CourseMaterial(courseMaterialId=1, url=www.google.com, course=Course(courseId=1, title=DSA, credit=6))]
     @OneToOne(
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.LAZY,
+            optional = false
     )
     @JoinColumn(
             name = "course_id",

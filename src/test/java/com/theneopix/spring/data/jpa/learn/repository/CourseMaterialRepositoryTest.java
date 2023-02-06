@@ -21,15 +21,15 @@ class CourseMaterialRepositoryTest {
     public void saveCourseMaterial(){
 
         Course course = Course.builder()
-                .title("DSA")
+                .title(".net")
                 .credit(6)
                 .build();
 
         CourseMaterial courseMaterial = CourseMaterial.builder()
-                .url("www.google.com")
+                .url("www.dotnet.com")
                 .course(course)
                 .build();
-
+        //If you don't add course(line 30) it will give error because optional=false in CourseMaterial
         repository.save(courseMaterial);
 
     }
